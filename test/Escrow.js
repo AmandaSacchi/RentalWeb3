@@ -27,6 +27,15 @@ describe('Escrow', () => {
             inspector.address,
             lender.address
         )
+
+        //aprovar propriedade
+        transaction = await realEstate.connect(seller).approve(escrow.address, 1)
+        await transaction.wait()
+
+        //lista de propriedades
+        transaction = await escrow.connect(seller).list(1)
+        await transaction.wait()
+
     })
 
     describe('Deployment', () => {
@@ -47,6 +56,18 @@ describe('Escrow', () => {
         it('returns the Inspector address', async () => {
             let result = await escrow.inspector()
             expect(result).to.be.equal(inspector.address)
+        })
+    })
+
+    describe('Listing', () => {
+        it('updated is listed', async () => {
+            const result = await escrow.isListed(1)
+            expect(result).to.be.equal(true)
+        })
+
+        it('updates the ownership', async () => {
+            //transfere o NFT do seller para o contrato
+            expect(await realEstate.ownerOf(1)).to.be.equal(escrow.address)
         })
     })
 

@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+//a interface é o indice do smart contract, aqui ficam listados as funções que serão executadas nele
 interface IERC721 {
     function transferFrom(
         address _from,
@@ -15,6 +16,7 @@ contract Escrow {
     address public inspector;
     address public lender;
 
+    mapping(uint256 => bool) public isListed;
 
     constructor(
         address _nftAddress,
@@ -28,8 +30,10 @@ contract Escrow {
         lender = _lender;
     }
 
-    function list() public {
-        
+    function list(uint256 _nftID) public {
+        //transfer NFT from seller to contract
+        IERC721(nftAddress).transferFrom(msg.sender, address(this), _nftID);
+        isListed[_nftID] = true;
     }
     
 }
