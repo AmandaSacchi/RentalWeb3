@@ -478,8 +478,8 @@
       ]
     },
     "C:\\Users\\amand\\Desktop\\Millo\\contracts\\Escrow.sol": {
-      "lastModificationDate": 1716156142931,
-      "contentHash": "631edec860e90ebab61e7e603be3b702",
+      "lastModificationDate": 1716230175634,
+      "contentHash": "6bb0dc5d171d8e9faa4dfdd9120042ce",
       "sourceName": "contracts/Escrow.sol",
       "solcConfig": {
         "version": "0.8.17",
