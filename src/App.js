@@ -15,12 +15,25 @@ import config from './config.json';
 
 function App() {
 
+  const [account, setAccount] = useState(null)
+
+  const loadBloackchainData = async () => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    setAccount(accounts[0])
+    console.log(accounts[0])
+  }
+
+  useEffect(() => {
+    loadBloackchainData()
+  }, [])
+
   return (
     <div>
 
       <div className='cards__section'>
 
-        <h3>Welcome to Millow</h3>
+        <h3>Welcome to Millo</h3>
 
       </div>
 
